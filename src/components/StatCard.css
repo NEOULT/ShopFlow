@@ -1,0 +1,73 @@
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.stat-card__title {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-card__icon--blue { background-color: #dbeafe; color: #3b82f6; }
+.stat-card__icon--yellow { background-color: #fef3c7; color: #f59e0b; }
+.stat-card__icon--red { background-color: #fee2e2; color: #ef4444; }
+.stat-card__icon--purple { background-color: #f3e8ff; color: #8b5cf6; }
+.stat-card__icon--orange { background-color: #fed7aa; color: #f97316; }
+.stat-card__icon--green { background-color: #dcfce7; color: #22c55e; }
+.stat-card__icon--gray { background-color: #f1f5f9; color: #64748b; }
+.stat-card__icon--indigo { background-color: #e0e7ff; color: #6366f1; }
+
+.stat-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16px;
+}
+
+.stat-card__indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.stat-card__indicator--blue { background-color: #3b82f6; }
+.stat-card__indicator--yellow { background-color: #f59e0b; }
+.stat-card__indicator--red { background-color: #ef4444; }
+.stat-card__indicator--purple { background-color: #8b5cf6; }
+.stat-card__indicator--orange { background-color: #f97316; }
+.stat-card__indicator--green { background-color: #22c55e; }
+.stat-card__indicator--gray { background-color: #64748b; }
+.stat-card__indicator--indigo { background-color: #6366f1; }
+
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 16px;
+  }
+  
+  .stat-card__value {
+    font-size: 28px;
+  }
+}
