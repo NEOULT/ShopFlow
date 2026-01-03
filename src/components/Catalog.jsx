@@ -1,49 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Catalog.css'
+import ProductCard from './ProductCard'
+import productsData from '../data/products.json'
 
 const Catalog = ({ onNavigateToAdmin }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('name-asc')
+  const [products, setProducts] = useState([])
+  const [categoryFilter, setCategoryFilter] = useState('Todas')
 
-  const products = [
-    {
-      id: 1,
-      name: 'Visor Neural X1',
-      description: 'Inmersión total con respuesta háptica y latencia cero.',
-      price: 299.00,
-      image: 'https://images.pexels.com/photos/3761262/pexels-photo-3761262.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      badge: 'Nuevo',
-      badgeType: 'new'
-    },
-    {
-      id: 2,
-      name: 'Teclado CyberDeck',
-      description: 'Switches ópticos y chasis de aleación de titanio.',
-      price: 150.00,
-      image: 'https://images.pexels.com/photos/671629/pexels-photo-671629.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      badge: null,
-      badgeType: null
-    },
-    {
-      id: 3,
-      name: 'Chronos Link',
-      description: 'Sincronización biométrica avanzada en tu muñeca.',
-      price: 89.99,
-      originalPrice: 120.00,
-      image: 'https://images.pexels.com/photos/4066296/pexels-photo-4066296.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      badge: 'Oferta',
-      badgeType: 'offer'
-    },
-    {
-      id: 4,
-      name: 'Quantum Fuel',
-      description: 'Bebida energética sintética. Pack x6.',
-      price: 10.00,
-      image: 'https://images.pexels.com/photos/20791048/pexels-photo-20791048.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-      badge: null,
-      badgeType: null
-    }
-  ]
+  useEffect(() => {
+    setProducts(productsData)
+  }, [])
+
+  // Obtener todas las categorías únicas
+  const allCategories = React.useMemo(() => {
+    const cats = productsData.map(p => p.category).filter(Boolean)
+    return ['Todas', ...Array.from(new Set(cats))]
+  }, [productsData])
 
   return (
     <div className="catalog">
@@ -112,46 +86,77 @@ const Catalog = ({ onNavigateToAdmin }) => {
               <option value="price-desc">Precio: Mayor a menor</option>
             </select>
           </div>
+
+          <div className="category-filter-container">
+            <svg className="category-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 6h16M6 10h12M8 14h8M10 18h4"/>
+            </svg>
+            <select
+              value={categoryFilter}
+              onChange={e => setCategoryFilter(e.target.value)}
+              className="category-filter-select"
+            >
+              {allCategories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        <div className="products-grid">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              {product.badge && (
-                <span className={`product-badge ${product.badgeType}`}>
-                  {product.badge}
-                </span>
-              )}
-              
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-              </div>
-              
-              <div className="product-info">
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-description">{product.description}</p>
-                
-                <div className="product-pricing">
-                  <span className="product-price">${product.price.toFixed(2)}</span>
-                  {product.originalPrice && (
-                    <span className="product-original-price">${product.originalPrice.toFixed(2)}</span>
-                  )}
-                </div>
-                
-                <button className="add-to-cart-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="9" cy="21" r="1"/>
-                    <circle cx="20" cy="21" r="1"/>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-                  </svg>
-                  AÑADIR
-                </button>
-                
-                <button className="more-info-btn">MÁS INFORMACIÓN</button>
+
+        {/* Agrupar productos por categoría y renderizar un carrusel por cada una */}
+        {(() => {
+          // Filtrar y ordenar productos según búsqueda, orden y filtro de categoría
+          let filtered = products.filter(product =>
+            (categoryFilter === 'Todas' || product.category === categoryFilter) &&
+            (
+              product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()))
+            )
+          );
+          switch (sortBy) {
+            case 'name-asc':
+              filtered.sort((a, b) => a.name.localeCompare(b.name));
+              break;
+            case 'name-desc':
+              filtered.sort((a, b) => b.name.localeCompare(a.name));
+              break;
+            case 'price-asc':
+              filtered.sort((a, b) => a.price - b.price);
+              break;
+            case 'price-desc':
+              filtered.sort((a, b) => b.price - a.price);
+              break;
+            default:
+              break;
+          }
+          // Agrupar por categoría
+          const categories = {};
+          filtered.forEach(product => {
+            if (!categories[product.category]) categories[product.category] = [];
+            categories[product.category].push(product);
+          });
+          // Renderizar cada categoría con su carrusel
+          return Object.entries(categories).map(([category, prods]) => (
+            <div key={category} className="category-section">
+              <h2 className="category-title">{category}</h2>
+              <div className="products-carousel">
+                {prods.map(product => (
+                  <ProductCard
+                    key={product.id}
+                    name={product.name}
+                    description={product.description}
+                    price={product.price}
+                    originalPrice={product.originalPrice}
+                    image={product.image}
+                    badge={product.badge}
+                    badgeType={product.badgeType}
+                  />
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          ));
+        })()}
 
         <div className="load-more-container">
           <button className="load-more-btn">Cargar más productos</button>

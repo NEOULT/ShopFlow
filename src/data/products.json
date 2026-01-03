@@ -1,0 +1,309 @@
+[
+  {
+    "id": 15,
+    "name": "Auriculares On-Ear SoundBlast - Sonido BassBoost y Plegables",
+    "description": "Diseño compacto y plegable con un sonido potente enfocado en graves. Ideales para escuchar música en movimiento. Incluyen funda de transporte.",
+    "price": 29.99,
+    "image": "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+  {
+    "id": 16,
+    "name": "Auriculares Deportivos True Wireless XFit - Resistencia al Agua IPX7",
+    "description": "Auriculares ideales para deporte con fijación segura en la oreja y resistencia al agua y sudor IPX7. Sonido claro y batería de 8 horas.",
+    "price": 45.00,
+    "image": "https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Audio"
+  },
+  {
+    "id": 17,
+    "name": "Soundbar CineMax 2.1 - Subwoofer Inalámbrico y Bluetooth",
+    "description": "Mejora el sonido de tu TV con esta soundbar 2.1 de 100W. Subwoofer inalámbrico para graves profundos y modo cine para mayor inmersión.",
+    "price": 129.00,
+    "image": "https://images.pexels.com/photos/2040907/pexels-photo-2040907.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+  {
+    "id": 18,
+    "name": "Micrófono Streaming VoicePro USB - Filtro Pop y Soporte Incluido",
+    "description": "Micrófono de condensador USB ideal para streaming, podcasts y grabaciones. Patrón cardioide, incluye filtro antipop, soporte y cable.",
+    "price": 79.99,
+    "originalPrice": 99.99,
+    "image": "https://images.pexels.com/photos/3874108/pexels-photo-3874108.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Audio"
+  },
+  {
+    "id": 19,
+    "name": "Altavoz Portátil MegaBoom - 24h de Batería y Sonido 360°",
+    "description": "Altavoz robusto con sonido omnidireccional. Resistente a salpicaduras, perfecto para exteriores. Se pueden emparejar dos para sonido estéreo.",
+    "price": 89.90,
+    "image": "https://images.pexels.com/photos/163007/phone-old-year-built-1955-brick-163007.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+  {
+    "id": 20,
+    "name": "Auriculares con Cancelación de Ruido NC200 - Modo Ambiente",
+    "description": "Cancelación de ruido adaptable y modo de sonido ambiente para estar alerta. Llamadas nítidas y 25 horas de batería con ANC activado.",
+    "price": 119.00,
+    "image": "https://images.pexels.com/photos/6348378/pexels-photo-6348378.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+  {
+    "id": 21,
+    "name": "Kit de Estudio de Grabación - Auriculares Cerrados + Interface de Audio",
+    "description": "Kit completo para empezar a grabar. Incluye auriculares de monitorización de estudio cerrados y interface de audio USB de 2 entradas.",
+    "price": 149.00,
+    "image": "https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Audio"
+  },
+  {
+    "id": 22,
+    "name": "Auriculares Infantiles Volumen Limitado - Diseño Divertido y Seguro",
+    "description": "Auriculares seguros para niños con limitación de volumen a 85dB. Diadema ajustable, construcción duradera y divertidos diseños de colores.",
+    "price": 24.99,
+    "image": "https://images.pexels.com/photos/7006947/pexels-photo-7006947.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+  {
+    "id": 23,
+    "name": "Transmisor Bluetooth para Coche - Conectar Auxiliar y Llamadas",
+    "description": "Convierte la radio de tu coche en un sistema Bluetooth. Permite streaming de audio y llamadas manos libres. Se enchufa al mechero 12V.",
+    "price": 19.50,
+    "image": "https://images.pexels.com/photos/6480706/pexels-photo-6480706.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Audio"
+  },
+  {
+    "id": 24,
+    "name": "Base de Carga para Auriculares True Wireless - Con Reloj Digital",
+    "description": "Base de carga elegante para tus auriculares inalámbricos. Incluye un reloj digital y compartimento para guardarlos. Carga por USB-C.",
+    "price": 34.99,
+    "image": "https://images.pexels.com/photos/4041270/pexels-photo-4041270.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Audio"
+  },
+
+  {
+    "id": 25,
+    "name": "Smartwatch Adventure X - GPS Dual Band y Brújula Digital",
+    "description": "Reloj para aventureros con GPS de alta precisión, brújula, barómetro y altímetro. Modo de batería ultralargo de hasta 30 días.",
+    "price": 199.00,
+    "image": "https://images.pexels.com/photos/7255503/pexels-photo-7255503.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Wearables"
+  },
+  {
+    "id": 26,
+    "name": "Pulsera de Actividad LifeTrack - Seguimiento de Estrés y Sueño",
+    "description": "Monitoriza tu actividad diaria, calidad del sueño y niveles de estrés mediante variabilidad del ritmo cardíaco. Pantalla táctil y notificaciones.",
+    "price": 39.90,
+    "image": "https://images.pexels.com/photos/437038/pexels-photo-437038.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+  {
+    "id": 27,
+    "name": "Anillo Inteligente SleepRing - Análisis Profundo del Sueño",
+    "description": "Anillo discreto que analiza tus ciclos de sueño, temperatura corporal y movimientos. Datos sincronizados en una app detallada.",
+    "price": 149.99,
+    "image": "https://images.pexels.com/photos/12618240/pexels-photo-12618240.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+  {
+    "id": 28,
+    "name": "Gafas Inteligentes ViewTech - Pantalla HUD y Cámara Integrada",
+    "description": "Gafas con pantalla Heads-Up Display (HUD) para notificaciones, navegación y fotos. Cámara de 8MP y control por gestos.",
+    "price": 299.00,
+    "originalPrice": 349.00,
+    "image": "https://images.pexels.com/photos/955938/pexels-photo-955938.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Wearables"
+  },
+  {
+    "id": 29,
+    "name": "Smartwatch Elegance Pro - Diseño de Lujo con Correa de Acero",
+    "description": "Reloj inteligente con aspecto clásico de reloj de pulsera. Correa de acero inoxidable, funciones de salud esenciales y notificaciones discretas.",
+    "price": 179.00,
+    "image": "https://images.pexels.com/photos/125779/pexels-photo-125779.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+  {
+    "id": 30,
+    "name": "Monitor Cardíaco para Pecho - Precisión Profesional y Bluetooth",
+    "description": "Sensor de ritmo cardíaco para el pecho, ideal para entrenamientos serios. Mayor precisión que los sensores ópticos de muñeca. Compatible con apps.",
+    "price": 59.00,
+    "image": "https://images.pexels.com/photos/1955134/pexels-photo-1955134.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+  {
+    "id": 31,
+    "name": "Smartwatch Kids SafeZone - Geolocalización y Llamadas SOS",
+    "description": "Reloj para niños con GPS, geofencing, llamadas a contactos autorizados y botón SOS. Diseño resistente y divertido.",
+    "price": 79.99,
+    "image": "https://images.pexels.com/photos/163117/keypad-tap-water-watch-163117.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+  {
+    "id": 32,
+    "name": "Zapatillas Deportivas Conectadas - Análisis de Carrera y Técnica",
+    "description": "Sensores en la suela miden tu técnica de carrera, impacto, cadencia y distancia. Datos en tiempo real en tu smartphone.",
+    "price": 129.00,
+    "image": "https://images.pexels.com/photos/2529147/pexels-photo-2529147.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Wearables"
+  },
+  {
+    "id": 33,
+    "name": "Parche Transdérmico FitnessPatch - Monitorización Continua 7 Días",
+    "description": "Parche adhesivo que monitoriza actividad, calorías, frecuencia cardíaca y sueño durante una semana completa. Resistente al agua.",
+    "price": 24.99,
+    "originalPrice": 34.99,
+    "image": "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Wearables"
+  },
+  {
+    "id": 34,
+    "name": "Collar para Mascotas SmartTag - GPS y Monitor de Actividad",
+    "description": "Sigue la ubicación y actividad de tu perro o gato. Geocerca virtual, monitor de sueño y recordatorio de vacunas en la app.",
+    "price": 49.90,
+    "image": "https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Wearables"
+  },
+
+  {
+    "id": 35,
+    "name": "Visor VR Standalone Horizon - Procesador de Juegos Integrado",
+    "description": "Todo en uno. No necesita PC ni consola. Procesador dedicado, 128GB de almacenamiento y controladores de mano precisos para una libertad total.",
+    "price": 349.00,
+    "image": "https://images.pexels.com/photos/1104696/pexels-photo-1104696.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 36,
+    "name": "Guantes Hápticos VR SenseGlove - Retroalimentación de Fuerza",
+    "description": "Siente texturas y resistencia en mundos virtuales. Guantes con retroalimentación de fuerza y seguimiento preciso de dedos.",
+    "price": 449.00,
+    "image": "https://images.pexels.com/photos/4144294/pexels-photo-4144294.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 37,
+    "name": "Kit VR para Simulador de Conducción - Volante y Pedales Compatibles",
+    "description": "Mejora tu simulador de conducción con este visor VR de gran campo de visión y baja latencia. Experiencia inmersiva total en carreras.",
+    "price": 279.00,
+    "originalPrice": 329.00,
+    "image": "https://images.pexels.com/photos/3970330/pexels-photo-3970330.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 38,
+    "name": "Visor VR para Empresas - Formación y Visualización 3D",
+    "description": "Visor profesional con software empresarial para formación, presentaciones de arquitectura y visualización de prototipos en 3D.",
+    "price": 899.00,
+    "image": "https://images.pexels.com/photos/7562133/pexels-photo-7562133.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 39,
+    "name": "Alfombra Omnidireccional VR - Camina Libremente en Espacios Virtuales",
+    "description": "Superficie especial que te permite caminar, correr y agacharte en cualquier dirección dentro del mundo virtual, sin salirte del sitio físico.",
+    "price": 599.00,
+    "image": "https://images.pexels.com/photos/3850519/pexels-photo-3850519.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 40,
+    "name": "Gafas VR Ultraligeras - Para Uso Prolongado y Cine en Casa",
+    "description": "Diseño cómodo y ligero (menos de 300g) ideal para ver películas en modo cine virtual o contenido 360°. Compatible con la mayoría de smartphones.",
+    "price": 49.99,
+    "image": "https://images.pexels.com/photos/1716861/pexels-photo-1716861.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 41,
+    "name": "Sistema de Seguimiento Full Body VR - 5 Sensores de Precisa",
+    "description": "Kit de 5 sensores para capturar el movimiento completo de tu cuerpo (pies, caderas, manos) e integrarlo en experiencias VR sociales y deportivas.",
+    "price": 229.00,
+    "image": "https://images.pexels.com/photos/4144296/pexels-photo-4144296.jpeg",
+    "badge": "Nuevo",
+    "badgeType": "new",
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 42,
+    "name": "VR Arena Pack - 4 Visores para Experiencias Multijugador Local",
+    "description": "Kit completo para montar una arena de realidad virtual. Incluye 4 visores standalone, software de gestión y zona de juego delimitada.",
+    "price": 1899.00,
+    "image": "https://images.pexels.com/photos/4150735/pexels-photo-4150735.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 43,
+    "name": "Visor VR con Eye-Tracking - Publicidad y Análisis de Usuario",
+    "description": "Tecnología de seguimiento ocular integrada. Ideal para estudios de mercado, publicidad interactiva y aplicaciones de accesibilidad.",
+    "price": 699.00,
+    "originalPrice": 850.00,
+    "image": "https://images.pexels.com/photos/4144298/pexels-photo-4144298.jpeg",
+    "badge": "Oferta",
+    "badgeType": "offer",
+    "category": "Realidad Virtual"
+  },
+  {
+    "id": 44,
+    "name": "Maletín de Transporte Profesional para Equipo VR",
+    "description": "Maletín acolchado con compartimentos personalizados para transportar de forma segura tu visor VR, mandos, sensores y accesorios.",
+    "price": 69.90,
+    "image": "https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg",
+    "badge": null,
+    "badgeType": null,
+    "category": "Realidad Virtual"
+  }
+]

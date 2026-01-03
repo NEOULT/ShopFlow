@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ProductTable.css'
 
 function ProductTable() {
+  // Opciones de cantidad de productos por página
+  const PAGE_SIZE_OPTIONS = [1, 3, 5, 10];
+  
   const products = [
     {
       id: 1,
@@ -41,6 +44,19 @@ function ProductTable() {
       stockStatus: 'medium',
       updated: '20 Oct 2023',
       image: 'https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&h=350'
+    },
+    {
+      id: 4,
+      name: 'Apple Watch Series 7 GPS, 41mm Midnight Aluminum Case',
+      sku: 'APL-W07',
+      category: 'Electrónica',
+      subcategory: 'Wearables',
+      barcode: '194252576123',
+      price: '399,00 $',
+      stock: '5 unidades',
+      stockStatus: 'medium',
+      updated: '20 Oct 2023',
+      image: 'https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&h=350'
     }
   ]
 
@@ -57,6 +73,28 @@ function ProductTable() {
     }
   }
 
+  // Pagination logic
+  const [productsPerPage, setProductsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  const startIdx = (currentPage - 1) * productsPerPage;
+  const endIdx = startIdx + productsPerPage;
+  const visibleProducts = products.slice(startIdx, endIdx);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  // Cambiar cantidad de productos por página
+  const handleProductsPerPageChange = (e) => {
+    setProductsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reiniciar a la primera página
+  };
+
   return (
     <div className="product-table-container">
       <div className="table-controls">
@@ -65,7 +103,7 @@ function ProductTable() {
             <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
             <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" fill="none"/>
           </svg>
-          <input type="text" placeholder="Buscar por nombre, código de barras o SKU" />
+          <input type="text" placeholder="Buscar por nombre" />
         </div>
         <div className="filter-controls">
           <select className="category-filter">
@@ -81,6 +119,15 @@ function ProductTable() {
             Filtros
           </button>
         </div>
+        {/* Selector de cantidad de registros por página */}
+        <div className="page-size-selector" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <label htmlFor="products-per-page" style={{ fontSize: '0.95em' }}>Registros por página:</label>
+          <select id="products-per-page" value={productsPerPage} onChange={handleProductsPerPageChange}>
+            {PAGE_SIZE_OPTIONS.map((size) => (
+              <option key={size} value={size}>{size}</option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="table-wrapper">
@@ -89,7 +136,6 @@ function ProductTable() {
             <tr>
               <th>PRODUCTO</th>
               <th>CATEGORÍA</th>
-              <th>CÓDIGO DE BARRAS</th>
               <th>PRECIO</th>
               <th>EXISTENCIAS</th>
               <th>ACTUALIZADO</th>
@@ -97,16 +143,19 @@ function ProductTable() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {visibleProducts.map((product) => (
               <tr key={product.id}>
                 <td>
                   <div className="product-info">
-                    <div className="product-image">
-                      <img src={product.image} alt={product.name} />
+                    <div className="product-image" style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', flexShrink: 0, padding: 0, margin: 0 }}>
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '8px', display: 'block', padding: 0, margin: 0 }}
+                      />
                     </div>
                     <div className="product-details">
                       <div className="product-name">{product.name}</div>
-                      <div className="product-sku">SKU: {product.sku}</div>
                     </div>
                   </div>
                 </td>
@@ -116,7 +165,6 @@ function ProductTable() {
                     <div className="category-sub">{product.subcategory}</div>
                   </div>
                 </td>
-                <td className="barcode">{product.barcode}</td>
                 <td className="price">{product.price}</td>
                 <td>{getStockBadge(product.stockStatus, product.stock)}</td>
                 <td className="updated">{product.updated}</td>
@@ -145,11 +193,19 @@ function ProductTable() {
 
       <div className="table-footer">
         <div className="results-info">
-          Mostrando <strong>1 a 3</strong> de <strong>1245</strong> resultados
+          Mostrando <strong>{products.length === 0 ? 0 : startIdx + 1} a {Math.min(endIdx, products.length)}</strong> de <strong>{products.length}</strong> resultados
         </div>
         <div className="pagination">
-          <button className="pagination-btn" disabled>Anterior</button>
-          <button className="pagination-btn pagination-btn--active">Siguiente</button>
+          <button 
+            className="pagination-btn"
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+          >Anterior</button>
+          <button 
+            className="pagination-btn pagination-btn--active"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >Siguiente</button>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ function Header() {
             <rect x="8" y="8" width="8" height="8" rx="1" fill="#3b82f6"/>
           </svg>
           <div className="logo-text">
-            <div className="site-name">arepa.rdi.store</div>
+            <div className="site-name">ShopFlow</div>
             <div className="site-subtitle">Panel de Administración</div>
           </div>
         </div>
@@ -26,11 +26,8 @@ function Header() {
         </button>
         <div className="user-info">
           <div className="user-details">
-            <div className="user-name">JUAN ANGEL CAMARILLO ...</div>
+            <div className="user-name">Gina Ariza</div>
             <div className="user-role">Administrador</div>
-          </div>
-          <div className="user-avatar">
-            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop&crop=face" alt="Usuario" />
           </div>
         </div>
       </div>
