@@ -2,21 +2,70 @@
 .category-filter-container {
   position: relative;
   min-width: 200px;
-  margin-left: 1rem;
+  margin-left: 0;
+  width: 100%;
+  max-width: 260px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .catalog-controls {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .search-container,
+  .sort-container,
+  .category-filter-container {
+    min-width: 200px;
+    max-width: 260px;
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Mobile: ensure controls fill full width (390px–767px) */
+@media (max-width: 767px) {
+  .catalog-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .search-container,
+  .sort-container,
+  .category-filter-container {
+    min-width: 0;
+    width: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .sort-container {
+    max-width: 90% !important;
+  }
+  .search-input,
+  .sort-select,
+  .category-filter-select {
+    width: 100%;
+    max-width: 100% !important;
+  }
 }
 
 .category-icon {
   position: absolute;
-  left: 1rem;
+  left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   color: #94a3b8;
   pointer-events: none;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 .category-filter-select {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 3rem;
+  min-width: 0;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
   font-size: 0.875rem;
@@ -27,6 +76,7 @@
   background-position: right 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
+  box-sizing: border-box;
 }
 
 .category-filter-select:focus {
@@ -65,8 +115,9 @@
   margin: 0 auto;
   padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 
 .catalog-logo {
@@ -163,11 +214,15 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-container {
   flex: 1;
   position: relative;
+  max-width: 400px;
+  min-width: 200px;
 }
 
 .search-icon {
@@ -197,6 +252,9 @@
 .sort-container {
   position: relative;
   min-width: 200px;
+  width: 100%;
+  max-width: 340px;
+  box-sizing: border-box;
 }
 
 .sort-icon {
@@ -210,6 +268,7 @@
 
 .sort-select {
   width: 100%;
+  min-width: 0;
   padding: 0.75rem 1rem 0.75rem 3rem;
   border: 1px solid #e2e8f0;
   border-radius: 0.5rem;
@@ -221,6 +280,7 @@
   background-position: right 0.5rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
+  box-sizing: border-box;
 }
 
 .sort-select:focus {
@@ -229,20 +289,32 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.products-carousel {
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 1rem;
-  margin-bottom: 3rem;
-  scroll-snap-type: x mandatory;
+
+.products-vertical-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
   width: 100%;
-  max-width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
   box-sizing: border-box;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding: 0 1vw;
+}
+
+@media (max-width: 1200px) {
+  .products-vertical-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .products-vertical-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .products-vertical-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Ocultar scroll horizontal en todos los navegadores */
@@ -363,38 +435,28 @@
   margin: 0.25rem 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .catalog-nav {
     padding: 1rem;
     flex-direction: column;
     gap: 1rem;
   }
-  
   .nav-links {
     gap: 1rem;
   }
-  
   .catalog-main {
     padding: 1rem;
   }
-  
   .catalog-title {
     font-size: 2rem;
   }
-  
-  .catalog-controls {
-    flex-direction: column;
-  }
-  
   .products-grid {
     grid-template-columns: 1fr;
   }
-  
   .footer-content {
     padding: 2rem 1rem 1rem;
     grid-template-columns: 1fr;
   }
-  
   .footer-bottom {
     padding: 1rem;
   }

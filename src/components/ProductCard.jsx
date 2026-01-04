@@ -67,4 +67,4 @@ const ProductCard = ({ name, description, price, originalPrice, image, badge, ba
   );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

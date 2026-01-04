@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useMemo, useRef } from 'react'
 import './ProductTable.css'
+import { useVirtualizer } from '@tanstack/react-virtual'
 
 function ProductTable() {
-  // Opciones de cantidad de productos por página
-  const PAGE_SIZE_OPTIONS = [1, 3, 5, 10];
-  
   const products = [
     {
       id: 1,
@@ -73,27 +71,20 @@ function ProductTable() {
     }
   }
 
-  // Pagination logic
-  const [productsPerPage, setProductsPerPage] = useState(3);
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(products.length / productsPerPage);
-  const startIdx = (currentPage - 1) * productsPerPage;
-  const endIdx = startIdx + productsPerPage;
-  const visibleProducts = products.slice(startIdx, endIdx);
-
-  const handlePrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
-
-  // Cambiar cantidad de productos por página
-  const handleProductsPerPageChange = (e) => {
-    setProductsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reiniciar a la primera página
-  };
+  // Virtualización de filas
+  const parentRef = useRef(null)
+  const ROW_HEIGHT = 72
+  const rowVirtualizer = useVirtualizer({
+    count: products.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => ROW_HEIGHT,
+    overscan: 8,
+  })
+  const virtualItems = rowVirtualizer.getVirtualItems()
+  const paddingTop = virtualItems.length ? virtualItems[0].start : 0
+  const paddingBottom = virtualItems.length
+    ? rowVirtualizer.getTotalSize() - virtualItems[virtualItems.length - 1].end
+    : 0
 
   return (
     <div className="product-table-container">
@@ -119,18 +110,9 @@ function ProductTable() {
             Filtros
           </button>
         </div>
-        {/* Selector de cantidad de registros por página */}
-        <div className="page-size-selector" style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <label htmlFor="products-per-page" style={{ fontSize: '0.95em' }}>Registros por página:</label>
-          <select id="products-per-page" value={productsPerPage} onChange={handleProductsPerPageChange}>
-            {PAGE_SIZE_OPTIONS.map((size) => (
-              <option key={size} value={size}>{size}</option>
-            ))}
-          </select>
-        </div>
       </div>
 
-      <div className="table-wrapper">
+      <div className="table-wrapper" ref={parentRef} style={{ height: 480, overflow: 'auto' }}>
         <table className="product-table">
           <thead>
             <tr>
@@ -143,8 +125,15 @@ function ProductTable() {
             </tr>
           </thead>
           <tbody>
-            {visibleProducts.map((product) => (
-              <tr key={product.id}>
+            {paddingTop > 0 && (
+              <tr>
+                <td colSpan={6} style={{ height: paddingTop }} />
+              </tr>
+            )}
+            {virtualItems.map((v) => {
+              const product = products[v.index]
+              return (
+              <tr key={product.id} style={{ height: ROW_HEIGHT }}>
                 <td>
                   <div className="product-info">
                     <div className="product-image" style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderRadius: '8px', flexShrink: 0, padding: 0, margin: 0 }}>
@@ -186,27 +175,14 @@ function ProductTable() {
                   </div>
                 </td>
               </tr>
-            ))}
+            )})}
+            {paddingBottom > 0 && (
+              <tr>
+                <td colSpan={6} style={{ height: paddingBottom }} />
+              </tr>
+            )}
           </tbody>
         </table>
-      </div>
-
-      <div className="table-footer">
-        <div className="results-info">
-          Mostrando <strong>{products.length === 0 ? 0 : startIdx + 1} a {Math.min(endIdx, products.length)}</strong> de <strong>{products.length}</strong> resultados
-        </div>
-        <div className="pagination">
-          <button 
-            className="pagination-btn"
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-          >Anterior</button>
-          <button 
-            className="pagination-btn pagination-btn--active"
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >Siguiente</button>
-        </div>
       </div>
     </div>
   )
