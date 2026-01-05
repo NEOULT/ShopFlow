@@ -1,0 +1,406 @@
+.modal-galeria-botones {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
+}
+.modal-cerrar {
+  position: fixed;
+  top: 32px;
+  right: 48px;
+  font-size: 2.2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+  pointer-events: auto;
+}
+.modal-anterior, .modal-siguiente {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+  padding: 0 16px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  pointer-events: auto;
+}
+.modal-anterior {
+  left: 32px;
+}
+.modal-siguiente {
+  right: 32px;
+}
+/* Modal galería de imágenes */
+.modal-galeria {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-galeria-contenido {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 700px;
+  height: 80vh;
+  background: transparent;
+}
+.modal-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  background: #fff;
+}
+.modal-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 2.2rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+.modal-anterior, .modal-siguiente {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0 16px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.modal-anterior:hover, .modal-siguiente:hover, .modal-cerrar:hover {
+  opacity: 1;
+}
+.modal-anterior {
+  left: 0;
+}
+.modal-siguiente {
+  right: 0;
+}
+/* --- ECOMMERCE COMPRA --- */
+.compra-ecommerce {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f7fafd;
+  min-height: 100vh;
+  color: #222;
+}
+.compra-breadcrumbs {
+  font-size: 0.95rem;
+  color: #8ca0b3;
+  padding: 24px 0 0 32px;
+}
+.compra-breadcrumbs .sep {
+  margin: 0 6px;
+}
+.compra-breadcrumbs .actual {
+  color: #222;
+  font-weight: 500;
+}
+.compra-main {
+  display: flex;
+  gap: 48px;
+  max-width: 1200px;
+  margin: 32px auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+  padding: 40px 32px 32px 32px;
+}
+.compra-gallery {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.compra-img-main {
+  position: relative;
+  width: 350px;
+  height: 320px;
+  background: #f2f4f8;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.compra-img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.compra-badge-nuevo {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 4px 12px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+.compra-thumbs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.compra-thumbs img,
+.compra-thumb-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: #f2f4f8;
+  object-fit: cover;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.compra-thumbs img.active {
+  border: 2px solid #2563eb;
+}
+.compra-thumb-placeholder {
+  display: inline-block;
+}
+.compra-info {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 540px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+@media (max-width: 900px) {
+  .compra-info {
+    max-height: none;
+    overflow-y: hidden;
+    padding-right: 0;
+  }
+}
+.compra-coleccion {
+  color: #2563eb;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.compra-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+.compra-rating {
+  color: #f59e42;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.compra-rating .score {
+  color: #64748b;
+  font-size: 0.98rem;
+  margin-left: 8px;
+}
+.compra-precio-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.compra-precio {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+.compra-precio-original {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+.compra-descuento {
+  font-size: 1.1rem;
+  color: #ff4757;
+  font-weight: 600;
+  margin-left: 4px;
+}
+.compra-stock {
+  margin-bottom: 8px;
+}
+.compra-stock .agotado {
+  color: #ff4757;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.compra-descripcion {
+  color: #444;
+  font-size: 1.08rem;
+  margin-bottom: 10px;
+}
+.compra-detalles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+  margin-bottom: 10px;
+}
+.compra-detalles-grid .label {
+  display: block;
+  color: #8ca0b3;
+  font-size: 0.93rem;
+  font-weight: 500;
+}
+.compra-detalles-grid .detail-value {
+  display: inline-block;
+  vertical-align: bottom;
+}
+.compra-cantidad-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+.compra-cantidad-center {
+  justify-content: center;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+}
+.agotado-msg {
+  color: #ff4757;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px 0 0 0;
+  font-size: 1.1rem;
+}
+.compra-cantidad-box button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: #f2f4f8;
+  font-size: 1.3rem;
+  color: #2563eb;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.compra-cantidad-box button:disabled {
+  color: #b0b0b0;
+  cursor: not-allowed;
+}
+.compra-cantidad-box .agotado-btn {
+  color: #ff4757;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.compra-whatsapp-btn {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 0;
+  margin: 10px 0 0 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.compra-whatsapp-btn:disabled {
+  background: #b0b0b0;
+  cursor: not-allowed;
+}
+.compra-seguridad {
+  display: flex;
+  gap: 18px;
+  color: #8ca0b3;
+  font-size: 0.98rem;
+  margin-top: 10px;
+}
+/* --- FOOTER --- */
+.compra-footer {
+  background: #f7fafd;
+  margin-top: 48px;
+  padding: 32px 0 0 0;
+  border-top: 1px solid #e5eaf1;
+}
+.compra-footer-cols {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 32px;
+  padding: 0 32px;
+}
+.compra-footer-cols > div {
+  flex: 1;
+  min-width: 180px;
+}
+.compra-footer-cols h4 {
+  font-size: 1.05rem;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+.compra-pagos-icons span {
+  font-size: 1.5rem;
+  margin-right: 6px;
+}
+.compra-footer-bottom {
+  max-width: 1200px;
+  margin: 32px auto 0 auto;
+  padding: 18px 32px 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  color: #8ca0b3;
+  font-size: 0.98rem;
+  border-top: 1px solid #e5eaf1;
+}
+@media (max-width: 900px) {
+  .compra-main {
+    flex-direction: column;
+    padding: 24px 8px 16px 8px;
+    gap: 24px;
+  }
+  .compra-footer-cols {
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 8px;
+  }
+  .compra-footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 8px 8px 8px;
+  }
+  .compra-img-main {
+    width: 100%;
+    height: 220px;
+  }
+}

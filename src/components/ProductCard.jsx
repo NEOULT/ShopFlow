@@ -23,7 +23,7 @@ const splitText = (text, maxLength, maxLines = 2) => {
   return result;
 };
 
-const ProductCard = ({ name, description, price, originalPrice, image, badge, badgeType }) => {
+const ProductCard = ({ name, description, price, originalPrice, image, badge, badgeType, onComprar }) => {
   const nameDisplay = splitText(name, 40, 2); // 2 lines, 40 chars per line
   const descDisplay = splitText(description, 70, 2); // 2 lines, 70 chars per line
   return (
@@ -52,7 +52,7 @@ const ProductCard = ({ name, description, price, originalPrice, image, badge, ba
               <span className="product-original-price">${originalPrice.toFixed(2)}</span>
             )}
           </div>
-          <button className="add-to-cart-btn">
+          <button className="add-to-cart-btn" onClick={onComprar}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"/>
               <circle cx="20" cy="21" r="1"/>

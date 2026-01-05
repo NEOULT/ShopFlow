@@ -4,7 +4,7 @@ import ProductCard from './ProductCard'
 import productsData from '../data/products.json'
 // Eliminamos virtualización horizontal para volver a flex + scroll-snap
 
-const Catalog = ({ onNavigateToAdmin }) => {
+const Catalog = ({ onNavigateToAdmin, onComprar }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('name-asc')
   const [products, setProducts] = useState([])
@@ -141,6 +141,7 @@ const Catalog = ({ onNavigateToAdmin }) => {
               image={product.image}
               badge={product.badge}
               badgeType={product.badgeType}
+              onComprar={onComprar}
             />
           ))}
         </div>
