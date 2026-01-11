@@ -2,35 +2,35 @@ import React, { useState } from 'react';
 import './Compra.css';
 
 const productoDemo = {
-  nombre: 'Beckham Hotel Collection Bed Pillows Standard/Queen Size Set of 2',
-  descripcion: 'Almohadas de gel de lujo, tamaño Queen, soporte suave para dormir boca arriba, de lado o boca abajo. Diseñadas con tecnología de enfriamiento avanzada y materiales hipoalergénicos para un descanso reparador y libre de interrupciones.',
-  precio: 10.00,
-  descuento: 20,
-  agotado: false,
-  imagen: 'https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg',
-  miniaturas: [
-    'https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg',
-    'https://images.pexels.com/photos/2040907/pexels-photo-2040907.jpeg',
-    'https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg'
+  name: "Beckham Hotel Collection Bed Pillows Standard/Queen Size Set of 2",
+  description: "Luxury gel pillows, Queen size, soft support for back, side, or stomach sleepers. Designed with advanced cooling technology and hypoallergenic materials for a restful and uninterrupted sleep.",
+  price: 10.00,
+  discount: 20,
+  stock: 0, // Number of units available
+  label: {
+    text: "NEW",
+    bgColor: "#00C853", // green
+    textColor: "#FFFFFF"
+  },
+  image: "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg",
+  thumbnails: [
+    "https://images.pexels.com/photos/3783471/pexels-photo-3783471.jpeg",
+    "https://images.pexels.com/photos/2040907/pexels-photo-2040907.jpeg",
+    "https://images.pexels.com/photos/164829/pexels-photo-164829.jpeg"
   ],
-  categoria: 'Dormitorio',
+  category: "Bedroom",
   details: {
-    unidad: 'Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2Set de 2',
-    material: 'Gel Fibra',
-    color: 'Blanco Puro',
-    tamaño: 'Standard/Queen Size',
-    unidad2: 'Set de 2',
-    material2: 'Gel Fibra',
-    color2: 'Blanco Puro',
-    tamaño2: 'Standard/Queen Size',
-    material3: 'Gel Fibra',
-    color3: 'Blanco Puro',
-    tamaño3: 'Standard/Queen Size',
-    material4: 'Gel Fibra',
-    color4: 'Blanco Puro',
-    tamaño4: 'Standard/Queen Size',
+    unit: "Set of 2",
+    material: "Gel Fiber",
+    color: "Pure White",
+    size: "Standard/Queen Size",
+    firmness: "Soft-Medium",
+    technology: "Advanced Cooling",
+    hygiene: "Hypoallergenic and dust mite resistant",
+    washing: "Machine washable"
   }
-};
+}
+
 
 const Compra = () => {
   const [cantidad, setCantidad] = useState(0);
@@ -38,21 +38,21 @@ const Compra = () => {
   const [imgActual, setImgActual] = useState(0);
 
   // Calcular precio con descuento
-  const tieneDescuento = productoDemo.descuento && productoDemo.descuento > 0;
-  const precioOriginal = productoDemo.precio;
-  const precioFinal = tieneDescuento
-    ? +(precioOriginal * (1 - productoDemo.descuento / 100)).toFixed(2)
-    : precioOriginal;
+  const hasDiscount = productoDemo.discount && productoDemo.discount > 0;
+  const originalPrice = productoDemo.price;
+  const finalPrice = hasDiscount
+    ? +(originalPrice * (1 - productoDemo.discount / 100)).toFixed(2)
+    : originalPrice;
 
   // Modal: la imagen principal es la posición 0, luego las miniaturas
-  const imagenesModal = [productoDemo.imagen, ...productoDemo.miniaturas];
-  const abrirModal = (idx) => {
+  const modalImages = [productoDemo.image, ...productoDemo.thumbnails];
+  const openModal = (idx) => {
     setImgActual(idx);
     setModalAbierto(true);
   };
-  const cerrarModal = () => setModalAbierto(false);
-  const siguienteImg = () => setImgActual((imgActual + 1) % imagenesModal.length);
-  const anteriorImg = () => setImgActual((imgActual - 1 + imagenesModal.length) % imagenesModal.length);
+  const closeModal = () => setModalAbierto(false);
+  const nextImg = () => setImgActual((imgActual + 1) % modalImages.length);
+  const prevImg = () => setImgActual((imgActual - 1 + modalImages.length) % modalImages.length);
 
   return (
     <div className="compra-ecommerce">
@@ -61,26 +61,42 @@ const Compra = () => {
       </nav>
       <div className="compra-main">
         <div className="compra-gallery">
-          <div className="compra-img-main" onClick={() => abrirModal(0)} style={{cursor:'zoom-in'}}>
-            <span className="compra-badge-nuevo">NUEVO</span>
-            <img src={productoDemo.imagen} alt={productoDemo.nombre} />
+          <div className="compra-img-main" onClick={() => openModal(0)} style={{cursor:'zoom-in'}}>
+            <span
+              className="compra-badge-nuevo"
+              style={{
+                backgroundColor: productoDemo.label.bgColor,
+                color: productoDemo.label.textColor,
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontWeight: 'bold',
+                fontSize: '0.9em',
+                position: 'absolute',
+                top: '10px',
+                left: '10px',
+                zIndex: 2
+              }}
+            >
+              {productoDemo.label.text}
+            </span>
+            <img src={productoDemo.image} alt={productoDemo.name} />
           </div>
           <div className="compra-thumbs">
-            {productoDemo.miniaturas.map((src, idx) => (
-              <img key={idx} src={src} alt={`thumb${idx+1}`} style={{cursor:'zoom-in'}} onClick={() => abrirModal(idx+1)} />
+            {productoDemo.thumbnails.map((src, idx) => (
+              <img key={idx} src={src} alt={`thumb${idx+1}`} style={{cursor:'zoom-in'}} onClick={() => openModal(idx+1)} />
             ))}
           </div>
 
           {/* Modal de galería de imágenes */}
           {modalAbierto && (
-            <div className="modal-galeria" onClick={cerrarModal}>
-              <div className="modal-galeria-botones">
-                <button className="modal-cerrar" onClick={cerrarModal}>&times;</button>
-                <button className="modal-anterior" onClick={anteriorImg}>&lt;</button>
-                <button className="modal-siguiente" onClick={siguienteImg}>&gt;</button>
-              </div>
+            <div className="modal-galeria">
               <div className="modal-galeria-contenido" onClick={e => e.stopPropagation()}>
-                <img src={imagenesModal[imgActual]} alt={`img${imgActual+1}`} className="modal-img" />
+                <button className="modal-cerrar" onClick={closeModal}>&times;</button>
+                <img src={modalImages[imgActual]} alt={`img${imgActual+1}`} className="modal-img" />
+                <div className="modal-controles">
+                  <button className="modal-anterior" onClick={prevImg}>&lt;</button>
+                  <button className="modal-siguiente" onClick={nextImg}>&gt;</button>
+                </div>
               </div>
             </div>
           )}
@@ -89,33 +105,36 @@ const Compra = () => {
           <div className="compra-cantidad-box compra-cantidad-center">
             <button onClick={() => setCantidad(c => Math.max(0, c - 1))} disabled={cantidad === 0}>-</button>
             <span>{cantidad}</span>
-            <button onClick={() => setCantidad(c => c + 1)} disabled={productoDemo.agotado}>+</button>
+            <button onClick={() => setCantidad(c => c + 1)} disabled={productoDemo.stock <= 0}>+</button>
           </div>
-          {productoDemo.agotado ? (
-            <div className="agotado-msg">AGOTADO</div>
+          {productoDemo.stock <= 0 ? (
+            <div className="agotado-msg">OUT OF STOCK</div>
           ) : (
             <button className="compra-whatsapp-btn">
-              PEDIR POR WHATSAPP
+              ORDER VIA WHATSAPP
             </button>
           )}
         </div>
         <div className="compra-info">
-          <span className="compra-coleccion">BECKHAM HOTEL COLLECTION</span>
-          <h1 className="compra-title">{productoDemo.nombre}</h1>
-          {/* Calificación y reseñas eliminadas */}
+          <h1 className="compra-title">{productoDemo.name}</h1>
+          {/* Rating and reviews removed */}
           <div className="compra-precio-box">
-            {tieneDescuento && (
-              <span className="compra-precio-original">${precioOriginal.toFixed(2)}</span>
+            {hasDiscount && (
+              <span className="compra-precio-original">${originalPrice.toFixed(2)}</span>
             )}
-            <span className="compra-precio">${precioFinal.toFixed(2)}</span>
-            {tieneDescuento && (
-              <span className="compra-descuento">-{productoDemo.descuento}% DCTO</span>
+            <span className="compra-precio">${finalPrice.toFixed(2)}</span>
+            {hasDiscount && (
+              <span className="compra-descuento">-{productoDemo.discount}% OFF</span>
             )}
           </div>
           <div className="compra-stock">
-            <span className="agotado">AGOTADO / 0 UNIDADES DISPONIBLES</span>
+            {productoDemo.stock <= 0 ? (
+              <span className="agotado">OUT OF STOCK / 0 AVAILABLE</span>
+            ) : (
+              <span className="disponible">{productoDemo.stock} AVAILABLE</span>
+            )}
           </div>
-          <p className="compra-descripcion">{productoDemo.descripcion}</p>
+          <p className="compra-descripcion">{productoDemo.description}</p>
           <div className="compra-detalles-grid">
             {Object.entries(productoDemo.details).map(([key, value]) => (
               <div key={key}>

@@ -1,45 +1,4 @@
-.modal-galeria-botones {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 10000;
-}
-.modal-cerrar {
-  position: fixed;
-  top: 32px;
-  right: 48px;
-  font-size: 2.2rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10001;
-  pointer-events: auto;
-}
-.modal-anterior, .modal-siguiente {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5rem;
-  color: #fff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 10001;
-  padding: 0 16px;
-  opacity: 0.8;
-  transition: opacity 0.2s;
-  pointer-events: auto;
-}
-.modal-anterior {
-  left: 32px;
-}
-.modal-siguiente {
-  right: 32px;
-}
+/* Controles flotantes eliminados; ahora los botones van debajo de la imagen */
 /* Modal galería de imágenes */
 .modal-galeria {
   position: fixed;
@@ -56,53 +15,58 @@
 .modal-galeria-contenido {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90vw;
   max-width: 700px;
-  height: 80vh;
   background: transparent;
 }
 .modal-img {
   max-width: 90vw;
-  max-height: 80vh;
+  max-height: 72vh;
   border-radius: 16px;
   box-shadow: 0 4px 32px rgba(0,0,0,0.25);
   background: #fff;
 }
 .modal-cerrar {
-  position: absolute;
-  top: 12px;
+  position: fixed;
+  top: 16px;
   right: 18px;
   font-size: 2.2rem;
   color: #fff;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 2;
+  z-index: 10001;
+}
+
+/* Nueva fila de controles bajo la imagen */
+.modal-controles {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  z-index: 10001;
 }
 .modal-anterior, .modal-siguiente {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5rem;
+  position: static;
+  transform: none;
+  font-size: 2.4rem;
   color: #fff;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 2;
-  padding: 0 16px;
-  opacity: 0.8;
+  padding: 6px 12px;
+  opacity: 0.85;
   transition: opacity 0.2s;
 }
 .modal-anterior:hover, .modal-siguiente:hover, .modal-cerrar:hover {
   opacity: 1;
-}
-.modal-anterior {
-  left: 0;
-}
-.modal-siguiente {
-  right: 0;
 }
 /* --- ECOMMERCE COMPRA --- */
 .compra-ecommerce {
@@ -286,11 +250,11 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+}
 .compra-cantidad-center {
   justify-content: center;
   margin-top: 18px;
   margin-bottom: 10px;
-}
 }
 .agotado-msg {
   color: #ff4757;
@@ -329,7 +293,6 @@
   border: none;
   border-radius: 12px;
   padding: 14px 0;
-  margin: 10px 0 0 0;
   cursor: pointer;
   transition: background 0.2s;
   box-shadow: 0 2px 8px rgba(37,99,235,0.08);

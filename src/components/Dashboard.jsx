@@ -1,15 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StatsGrid from './StatsGrid'
 import ProductTable from './ProductTable'
 import './Dashboard.css'
+import Sidebar from './Sidebar'
+import './Sidebar.css'
 
-function Dashboard() {
+function Dashboard({ sidebarOpen = true }) {
+  const [section, setSection] = useState('inicio');
+
   return (
-    <main className="dashboard">
+    <main className="dashboard admin-layout">
+      <Sidebar currentSection={section} onChange={setSection} open={sidebarOpen} />
+      <div className="admin-content">
       <div className="dashboard-header">
         <div className="dashboard-title">
-          <h1>Panel de Productos</h1>
-          <p>Gestiona tu inventario, precios y existencias en tiempo real.</p>
+          <h1>{section === 'inicio' ? 'Panel de Productos' : 'Categorías'}</h1>
+          {section === 'inicio' && (
+            <p>Gestiona tu inventario, precios y existencias en tiempo real.</p>
+          )}
+          {section === 'categorias' && (
+            <p>Administra categorías, etiquetas y colecciones.</p>
+          )}
         </div>
         <div className="dashboard-actions">
           <button className="btn-secondary">
@@ -28,8 +39,19 @@ function Dashboard() {
           </button>
         </div>
       </div>
-      <StatsGrid />
-      <ProductTable />
+      {section === 'inicio' && (
+        <>
+          <StatsGrid />
+          <ProductTable />
+        </>
+      )}
+      {section === 'categorias' && (
+        <div style={{background:'white', border:'1px solid #e2e8f0', borderRadius:12, padding:16}}>
+          <h2 style={{marginTop:0}}>Gestión de categorías</h2>
+          <p style={{color:'#64748b'}}>Aquí podrás crear, editar y organizar categorías. (Vista en construcción)</p>
+        </div>
+      )}
+      </div>
     </main>
   )
 }

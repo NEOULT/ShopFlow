@@ -4,6 +4,17 @@
   margin: 0 auto;
 }
 
+/* Admin layout with sidebar */
+.admin-layout {
+  display: flex;
+  gap: 0;
+}
+
+.admin-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .dashboard-header {
   display: flex;
   justify-content: space-between;

@@ -7,6 +7,7 @@ import './App.css'
 
 function App() {
   const [currentView, setCurrentView] = useState('catalog');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Nueva vista: 'compra'
   return (
@@ -19,8 +20,12 @@ function App() {
       )}
       {currentView === 'admin' && (
         <>
-          <Header onNavigateToCatalog={() => setCurrentView('catalog')} />
-          <Dashboard />
+          <Header 
+            onNavigateToCatalog={() => setCurrentView('catalog')} 
+            onToggleSidebar={() => setSidebarOpen(s => !s)}
+            sidebarOpen={sidebarOpen}
+          />
+          <Dashboard sidebarOpen={sidebarOpen} />
         </>
       )}
       {currentView === 'compra' && (
