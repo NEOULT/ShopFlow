@@ -1,3 +1,22 @@
+/* Botón circular para crear producto */
+.btn-circle-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 20px;
+  padding: 0;
+}
+.btn-circle-primary:hover {
+  background: #2563eb;
+}
 .product-table-container {
   background: white;
   border-radius: 12px;

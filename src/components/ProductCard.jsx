@@ -23,14 +23,26 @@ const splitText = (text, maxLength, maxLines = 2) => {
   return result;
 };
 
-const ProductCard = ({ name, description, price, originalPrice, image, badge, badgeType, onComprar }) => {
+const ProductCard = ({ name, description, price, originalPrice, image, badge, badgeType, label, onComprar }) => {
   const nameDisplay = splitText(name, 40, 2); // 2 lines, 40 chars per line
   const descDisplay = splitText(description, 70, 2); // 2 lines, 70 chars per line
+
+  const labelText = label?.label_te ?? label?.text;
+  const labelBg = label?.label_bg ?? label?.bg;
+  const labelColor = label?.label_tc ?? label?.color;
+
   return (
     <div className="product-card">
-      {badge && (
+      {labelText ? (
+        <span
+          className="product-badge"
+          style={labelBg || labelColor ? { background: labelBg, color: labelColor } : undefined}
+        >
+          {labelText}
+        </span>
+      ) : badge ? (
         <span className={`product-badge ${badgeType}`}>{badge}</span>
-      )}
+      ) : null}
       <div className="product-image">
         <img src={image} alt={name} loading="lazy" />
       </div>

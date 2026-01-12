@@ -1,0 +1,145 @@
+.categories {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.categories__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.categories__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.categories__subtitle {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.categories__form {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+.categories__formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.categories__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.categories__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+}
+
+.categories__input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.categories__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.categories__btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.categories__btn--primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.categories__btn--danger {
+  border-color: #fecaca;
+  color: #b91c1c;
+  background: #fff;
+}
+
+.categories__btn--small {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.categories__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.categories__list {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 16px;
+}
+
+.categories__state {
+  padding: 12px;
+  color: #64748b;
+}
+
+.categories__state--error {
+  color: #ef4444;
+}
+
+.categories__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.categories__table th,
+.categories__table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.categories__table th {
+  color: #334155;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.categories__colActions {
+  width: 160px;
+  white-space: nowrap;
+}
+
+.categories__muted {
+  color: #64748b;
+}

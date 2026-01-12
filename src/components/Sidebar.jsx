@@ -4,7 +4,9 @@ import './Sidebar.css';
 const Sidebar = ({ currentSection, onChange, open = false }) => {
   const items = [
     { key: 'inicio', label: 'Inicio' },
+    { key: 'productos', label: 'Productos' },
     { key: 'categorias', label: 'Categorías' },
+    { key: 'etiquetas', label: 'Etiquetas' },
   ];
 
   return (

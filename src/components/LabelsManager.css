@@ -1,0 +1,94 @@
+.labels-manager {
+  margin-top: 1em;
+}
+
+.labels__editorGrid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.labels__previewWrap {
+  margin-bottom: 16px;
+  position: sticky;
+  top: 12px;
+  align-self: start;
+}
+
+.labels__previewTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.labels__previewCard {
+  max-width: 420px;
+}
+
+.labels__previewCardInner {
+  transform: scale(0.92);
+  transform-origin: top left;
+}
+
+.labels__badgePreview {
+  position: relative;
+  width: 160px;
+  height: 56px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.labels__badgePreview .product-badge {
+  top: 10px;
+  left: 10px;
+}
+
+.labels__tableWrap {
+  max-height: 320px;
+  overflow: auto;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Sticky header inside the scroll container */
+.labels__tableWrap .categories__table thead th {
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 1;
+}
+
+.labels__formRow {
+  display: grid;
+  grid-template-columns: 1fr 160px 160px;
+  gap: 12px;
+}
+
+.labels__color {
+  padding: 0;
+  height: 42px;
+}
+
+@media (max-width: 900px) {
+  .labels__editorGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .labels__previewWrap {
+    position: static;
+  }
+
+  .labels__formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .labels__previewCard {
+    max-width: 100%;
+  }
+}
