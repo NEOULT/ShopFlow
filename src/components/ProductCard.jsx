@@ -23,16 +23,38 @@ const splitText = (text, maxLength, maxLines = 2) => {
   return result;
 };
 
-const ProductCard = ({ name, description, price, originalPrice, image, badge, badgeType, label, onComprar }) => {
+
+const ProductCard = ({ id, name, description, price, originalPrice, discount, image, badge, badgeType, label, onComprar }) => {
   const nameDisplay = splitText(name, 40, 2); // 2 lines, 40 chars per line
   const descDisplay = splitText(description, 70, 2); // 2 lines, 70 chars per line
-
   const labelText = label?.label_te ?? label?.text;
   const labelBg = label?.label_bg ?? label?.bg;
   const labelColor = label?.label_tc ?? label?.color;
+  console.log(id);
+  
+  // Determinar el descuento a mostrar
+  let discountToShow = undefined;
+  let displayPrice = price;
+  let displayOriginalPrice = null;
+
+  if (typeof discount !== 'undefined' && discount !== null && discount !== '' && Number(discount) > 0) {
+    discountToShow = Number(discount);
+    displayOriginalPrice = price;
+    displayPrice = price - (price * (discountToShow / 100));
+  } else if (typeof originalPrice === 'number' && originalPrice > price) {
+    discountToShow = Math.round(((originalPrice - price) / originalPrice) * 100);
+    displayOriginalPrice = originalPrice;
+    displayPrice = price;
+  }
+
+  const hasDiscount = discountToShow > 0;
 
   return (
     <div className="product-card">
+      {/* Descuento en la esquina superior derecha si existe */}
+      {hasDiscount && (
+        <span className="product-discount-badge">-{discountToShow}%</span>
+      )}
       {labelText ? (
         <span
           className="product-badge"
@@ -59,21 +81,20 @@ const ProductCard = ({ name, description, price, originalPrice, image, badge, ba
         </p>
         <div className="product-actions">
           <div className="product-pricing">
-            <span className="product-price">${price.toFixed(2)}</span>
-            {originalPrice && (
-              <span className="product-original-price">${originalPrice.toFixed(2)}</span>
+            <span className="product-price">${displayPrice.toFixed(2)}</span>
+            {hasDiscount && displayOriginalPrice && (
+              <span className="product-original-price">${displayOriginalPrice.toFixed(2)}</span>
             )}
           </div>
-          <button className="add-to-cart-btn" onClick={onComprar}>
+          <button className="add-to-cart-btn" onClick={() => onComprar && onComprar(id)}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="9" cy="21" r="1"/>
               <circle cx="20" cy="21" r="1"/>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
             </svg>
-            AÑADIR
+            Ir a comprar
           </button>
         </div>
-        <button className="more-info-btn">MÁS INFORMACIÓN</button>
       </div>
     </div>
   );

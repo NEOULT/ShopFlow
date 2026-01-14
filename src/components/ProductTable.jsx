@@ -1,11 +1,18 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
+import ProductModal from './ProductModal'
+import { useCategories } from '../hooks/useCategories'
+import { useLabels } from '../hooks/useLabels'
 import './ProductTable.css'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useProducts } from '../hooks/useProducts';
 // Removed ProductModal and related imports
 
 function ProductTable() {
-  const { items: products, loading, error, create } = useProducts();
+  const { items: products, loading, error, create, update, remove, pagination, setProductFilters } = useProducts();
+  const { items: categories } = useCategories();
+  const { items: labels } = useLabels();
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editProduct, setEditProduct] = useState(null);
   // Removed modalOpen state and handleCreate function
 
   const getStockBadge = (status, stock) => {
@@ -42,15 +49,53 @@ function ProductTable() {
   if (error) {
     return <div className="product-table-container"><div className="table-state table-state--error">Error al cargar productos.</div></div>;
   }
+  const handleEdit = (product) => {
+    setEditProduct(product);
+    setEditModalOpen(true);
+  };
+
+  const handleEditSubmit = async (data) => {
+    if (editProduct) {
+      await update(editProduct._id || editProduct.id, data);
+      setEditModalOpen(false);
+      setEditProduct(null);
+    }
+  };
+
+  const handleDelete = async (product) => {
+    if (window.confirm(`¿Seguro que deseas eliminar el producto "${product.product_na}"?`)) {
+      await remove(product._id || product.id);
+    }
+  };
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= pagination.pages) {
+      setProductFilters({ page: newPage });
+    }
+  };
+
+  const handleLimitChange = (e) => {
+    setProductFilters({ limit: Number(e.target.value), page: 1 });
+  };
+
   return (
     <div className="product-table-container">
       <div className="table-controls">
-        <div className="search-bar">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div className="search-bar">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
             <path d="M21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" fill="none"/>
           </svg>
-          <input type="text" placeholder="Buscar por nombre" />
+            <input type="text" placeholder="Buscar por nombre" />
+          </div>
+          <div>
+            <select value={pagination.limit} onChange={handleLimitChange} style={{ padding: '2px 8px', fontSize: 14 }}>
+              {[5, 10, 15, 20].map(opt => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className="filter-controls">
           <select className="category-filter">
@@ -113,18 +158,21 @@ function ProductTable() {
                   <td className="updated">{new Date(product.updatedAt || product.createdAt).toLocaleDateString()}</td>
                   <td>
                     <div className="actions">
-                      <button className="action-btn edit-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" strokeWidth="2" fill="none"/>
-                        </svg>
+                      <button
+                        type="button"
+                        className="categories__btn categories__btn--small"
+                        onClick={() => handleEdit(product)}
+                        title="Editar"
+                      >
+                        Editar
                       </button>
-                      <button className="action-btn menu-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="1" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          <circle cx="12" cy="5" r="1" stroke="currentColor" strokeWidth="2" fill="none"/>
-                          <circle cx="12" cy="19" r="1" stroke="currentColor" strokeWidth="2" fill="none"/>
-                        </svg>
+                      <button
+                        type="button"
+                        className="categories__btn categories__btn--small categories__btn--danger"
+                        onClick={() => handleDelete(product)}
+                        title="Eliminar"
+                      >
+                        Eliminar
                       </button>
                     </div>
                   </td>
@@ -140,7 +188,35 @@ function ProductTable() {
         </table>
       </div>
 
-      {/* ProductModal eliminado */}
+      {/* Controles de paginación */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '16px 0' }}>
+        <button
+          className="categories__btn categories__btn--small"
+          onClick={() => handlePageChange(pagination.page - 1)}
+          disabled={pagination.page <= 1}
+        >
+          Anterior
+        </button>
+        <span style={{ margin: '0 12px' }}>
+          Página {pagination.page} de {pagination.pages}
+        </span>
+        <button
+          className="categories__btn categories__btn--small"
+          onClick={() => handlePageChange(pagination.page + 1)}
+          disabled={pagination.page >= pagination.pages}
+        >
+          Siguiente
+        </button>
+      </div>
+
+      <ProductModal
+        open={editModalOpen}
+        onClose={() => { setEditModalOpen(false); setEditProduct(null); }}
+        onSubmit={handleEditSubmit}
+        categories={categories}
+        labels={labels}
+        {...(editProduct ? { initialData: editProduct } : {})}
+      />
     </div>
   );
 }

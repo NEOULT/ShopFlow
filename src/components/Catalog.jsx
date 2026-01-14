@@ -1,52 +1,55 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import './Catalog.css'
 import ProductCard from './ProductCard'
-import productsData from '../data/products.json'
-// Eliminamos virtualización horizontal para volver a flex + scroll-snap
+import { useProducts } from '../hooks/useProducts'
+
 
 const Catalog = ({ onNavigateToAdmin, onComprar }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [sortBy, setSortBy] = useState('name-asc')
-  const [products, setProducts] = useState([])
   const [categoryFilter, setCategoryFilter] = useState('Todas')
+  const { items: products, loading, error } = useProducts({ limit: 10 });
 
-  useEffect(() => {
-    setProducts(productsData)
-  }, [])
 
   // Obtener todas las categorías únicas
-  const allCategories = React.useMemo(() => {
-    const cats = productsData.map(p => p.category).filter(Boolean)
+  const allCategories = useMemo(() => {
+    const cats = products.map(p => p.product_ca?.name || p.category || '').filter(Boolean)
     return ['Todas', ...Array.from(new Set(cats))]
-  }, [productsData])
+  }, [products])
+
 
   // Filtrar y ordenar productos según búsqueda, orden y filtro de categoría
   const filteredProducts = useMemo(() => {
-    let filtered = products.filter(product =>
-      (categoryFilter === 'Todas' || product.category === categoryFilter) &&
-      (
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (product.description && product.description.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    )
+    let filtered = products.filter(product => {
+      const name = product.product_na || product.name || '';
+      const description = product.product_de || product.description || '';
+      const category = product.product_ca?.name || product.category || '';
+      return (
+        (categoryFilter === 'Todas' || category === categoryFilter) &&
+        (
+          name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (description && description.toLowerCase().includes(searchTerm.toLowerCase()))
+        )
+      );
+    });
     switch (sortBy) {
       case 'name-asc':
-        filtered.sort((a, b) => a.name.localeCompare(b.name))
-        break
+        filtered.sort((a, b) => (a.product_na || a.name || '').localeCompare(b.product_na || b.name || ''));
+        break;
       case 'name-desc':
-        filtered.sort((a, b) => b.name.localeCompare(a.name))
-        break
+        filtered.sort((a, b) => (b.product_na || b.name || '').localeCompare(a.product_na || a.name || ''));
+        break;
       case 'price-asc':
-        filtered.sort((a, b) => a.price - b.price)
-        break
+        filtered.sort((a, b) => (a.product_pr || a.price || 0) - (b.product_pr || b.price || 0));
+        break;
       case 'price-desc':
-        filtered.sort((a, b) => b.price - a.price)
-        break
+        filtered.sort((a, b) => (b.product_pr || b.price || 0) - (a.product_pr || a.price || 0));
+        break;
       default:
-        break
+        break;
     }
-    return filtered
-  }, [products, searchTerm, sortBy, categoryFilter])
+    return filtered;
+  }, [products, searchTerm, sortBy, categoryFilter]);
 
   return (
     <div className="catalog">
@@ -125,22 +128,31 @@ const Catalog = ({ onNavigateToAdmin, onComprar }) => {
 
 
         {/* Renderizado vertical: solo una categoría o todos los productos */}
+
         <div className="products-vertical-list">
-          {filteredProducts.length === 0 && (
+          {loading && (
+            <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>Cargando productos...</div>
+          )}
+          {error && (
+            <div style={{ padding: '2rem', textAlign: 'center', color: '#ef4444' }}>Error al cargar productos.</div>
+          )}
+          {!loading && !error && filteredProducts.length === 0 && (
             <div style={{ padding: '2rem', textAlign: 'center', color: '#64748b' }}>
               No hay productos para mostrar.
             </div>
           )}
           {filteredProducts.map(product => (
+            console.log(product._id),
+            
             <ProductCard
-              key={product.id}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              originalPrice={product.originalPrice}
-              image={product.image}
-              badge={product.badge}
-              badgeType={product.badgeType}
+              id={product._id || product.id}
+              name={product.product_na || product.name}
+              description={product.product_de || product.description}
+              price={product.product_pr || product.price}
+              originalPrice={product.product_or || product.originalPrice}
+              discount={typeof product.product_di !== 'undefined' ? product.product_di : product.discount}
+              image={product.product_im || product.image}
+              label={product.product_label}
               onComprar={onComprar}
             />
           ))}

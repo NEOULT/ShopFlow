@@ -1,3 +1,18 @@
+.product-discount-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  z-index: 15;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.08);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
 .product-actions {
   width: 100%;
   margin-top: auto;
@@ -23,10 +38,11 @@
   height: 100%;
 }
 
-.product-card:hover {
-  transform: translateY(-2px);
-  /* Keep shadow static to prevent expensive repaints */
-}
+
+/* .product-card:hover {  Efecto de levantarse eliminado */
+/*   transform: translateY(-2px); */
+/*   Keep shadow static to prevent expensive repaints */
+/* } */
 
 .product-badge {
   position: absolute;
