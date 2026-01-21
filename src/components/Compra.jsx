@@ -4,6 +4,10 @@ import React, { useState, useEffect } from 'react';
 import './Compra.css';
 import { useParams } from 'react-router-dom';
 import { productsService } from '../services/products.service';
+ 
+const phone = import.meta.env.VITE_PHONE_NUMBER;
+console.log('phone', phone);
+
 
 const Compra = () => {
   const { id } = useParams();
@@ -143,11 +147,12 @@ const Compra = () => {
             <button
               className="compra-whatsapp-btn"
               onClick={() => {
-                const baseUrl = 'https://wa.me/';
-                const phone = '';
+                const baseUrl = `https://wa.me/${phone}`;
+                console.log(baseUrl);
+                
                 const url = window.location.origin + '/compra/' + id;
                 const msg = `Hola, quiero comprar el producto: ${productoDemo.name} ${url}\nCantidad: ${cantidad > 0 ? cantidad : 1}`.replace(/\n/g, '%0A');
-                window.open(`${baseUrl}${phone}?text=${msg}`, '_blank', 'noopener,noreferrer');
+                window.open(`${baseUrl}?text=${msg}`, '_blank', 'noopener,noreferrer');
               }}
               type="button"
             >
@@ -160,9 +165,9 @@ const Compra = () => {
           {/* Rating and reviews removed */}
           <div className="compra-precio-box">
             {hasDiscount && (
-              <span className="compra-precio-original">${originalPrice.toFixed(2)}</span>
+              <span className="compra-precio-original">COP${originalPrice.toFixed(2)}</span>
             )}
-            <span className="compra-precio">${finalPrice.toFixed(2)}</span>
+            <span className="compra-precio">COP${finalPrice.toFixed(2)}</span>
             {hasDiscount && (
               <span className="compra-descuento">-{productoDemo.discount}% OFF</span>
             )}

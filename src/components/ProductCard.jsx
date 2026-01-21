@@ -81,9 +81,9 @@ const ProductCard = ({ id, name, description, price, originalPrice, discount, im
         </p>
         <div className="product-actions">
           <div className="product-pricing">
-            <span className="product-price">${displayPrice.toFixed(2)}</span>
+            <span className="product-price">COP${displayPrice.toFixed(2)}</span>
             {hasDiscount && displayOriginalPrice && (
-              <span className="product-original-price">${displayOriginalPrice.toFixed(2)}</span>
+              <span className="product-original-price">COP${displayOriginalPrice.toFixed(2)}</span>
             )}
           </div>
           <button className="add-to-cart-btn" onClick={() => onComprar && onComprar(id)}>

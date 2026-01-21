@@ -206,7 +206,7 @@ function ProductTable() {
                       {/* Puedes mostrar subcategoría si existe */}
                     </div>
                   </td>
-                  <td className="price">${product.product_pr?.toFixed(2)}</td>
+                  <td className="price">COP${product.product_pr?.toFixed(2)}</td>
                   <td>{getStockBadge('good', product.product_st)}</td>
                   <td className="updated">{new Date(product.updatedAt || product.createdAt).toLocaleDateString()}</td>
                   <td>
