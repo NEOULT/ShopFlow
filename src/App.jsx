@@ -10,7 +10,7 @@ import './App.css';
 // Simulación de autenticación (ajusta según tu lógica real)
 const useAuth = () => {
   // Cambia esto por tu lógica real de login
-  const [isAuthenticated] = useState(false);
+  const [isAuthenticated] = useState(true);
   return { isAuthenticated };
 };
 
@@ -24,17 +24,18 @@ function PrivateRoute({ children }) {
   return children;
 }
 
-function App() {
+
+function AppRoutes() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const navigate = useNavigate ? useNavigate() : null;
+  const navigate = useNavigate();
 
   return (
     <div className="app">
       <Routes>
         <Route path="/" element={
           <Catalog 
-            onNavigateToAdmin={() => navigate && navigate('/admin')}
-            onComprar={id => navigate && navigate(`/compra/${id}`)}
+            onNavigateToAdmin={() => navigate('/admin')}
+            onComprar={id => navigate(`/compra/${id}`)}
           />
         } />
         <Route path="/compra/:id" element={<Compra />} />
@@ -42,7 +43,7 @@ function App() {
           <PrivateRoute>
             <>
               <Header 
-                onNavigateToCatalog={() => navigate && navigate('/')} 
+                onNavigateToCatalog={() => navigate('/')} 
                 onToggleSidebar={() => setSidebarOpen(s => !s)}
                 sidebarOpen={sidebarOpen}
               />
@@ -60,7 +61,7 @@ function App() {
 export default function AppWithRouter() {
   return (
     <Router>
-      <App />
+      <AppRoutes />
     </Router>
   );
 }

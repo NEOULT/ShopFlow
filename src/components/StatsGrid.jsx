@@ -27,30 +27,6 @@ function StatsGrid() {
       value: '5',
       icon: 'image',
       color: 'purple'
-    },
-    {
-      title: 'Productos sin precio',
-      value: '3',
-      icon: 'price',
-      color: 'orange'
-    },
-    {
-      title: 'Productos con ventas',
-      value: '850',
-      icon: 'trending',
-      color: 'green'
-    },
-    {
-      title: 'Productos sin ventas',
-      value: '395',
-      icon: 'arrow',
-      color: 'gray'
-    },
-    {
-      title: 'Sin categoría',
-      value: '8',
-      icon: 'category',
-      color: 'indigo'
     }
   ]
 

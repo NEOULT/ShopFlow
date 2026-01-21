@@ -4,7 +4,10 @@ export const productsService = {
 	list(filters = {}) {
 		const params = new URLSearchParams();
 		Object.entries(filters).forEach(([key, value]) => {
-			if (value !== undefined && value !== null && value !== '') {
+			// Siempre enviar 'search', aunque esté vacío
+			if (key === 'search') {
+				params.append('search', value ?? '');
+			} else if (value !== undefined && value !== null && value !== '') {
 				params.append(key, value);
 			}
 		});

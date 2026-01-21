@@ -81,8 +81,11 @@ const Compra = () => {
 
   return (
     <div className="compra-ecommerce">
-      <nav className="compra-breadcrumbs">
-        <span>Inicio</span> <span className="sep">›</span> <span>{productoDemo.category || 'Categoría'}</span> <span className="sep">›</span> <span className="actual">{productoDemo.name}</span>
+      <nav className="compra-breadcrumbs" style={{display:'flex',alignItems:'center',gap:8}}>
+        <button onClick={() => window.history.back()} style={{background:'none',border:'none',cursor:'pointer',padding:0,marginRight:8}} title="Volver">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#64748b" strokeWidth="2"><path d="M13 17l-5-5 5-5"/></svg>
+        </button>
+        <span>Inicio</span> <span className="sep">›</span> <span className="actual">{productoDemo.name}</span>
       </nav>
       <div className="compra-main">
         <div className="compra-gallery">
