@@ -6,8 +6,6 @@ import { useParams } from 'react-router-dom';
 import { productsService } from '../services/products.service';
  
 const phone = import.meta.env.VITE_PHONE_NUMBER;
-console.log('phone', phone);
-
 
 const Compra = () => {
   const { id } = useParams();
@@ -147,9 +145,7 @@ const Compra = () => {
             <button
               className="compra-whatsapp-btn"
               onClick={() => {
-                const baseUrl = `https://wa.me/${phone}`;
-                console.log(baseUrl);
-                
+                const baseUrl = `https://wa.me/${phone}`;                
                 const url = window.location.origin + '/compra/' + id;
                 const msg = `Hola, quiero comprar el producto: ${productoDemo.name} ${url}\nCantidad: ${cantidad > 0 ? cantidad : 1}`.replace(/\n/g, '%0A');
                 window.open(`${baseUrl}?text=${msg}`, '_blank', 'noopener,noreferrer');
