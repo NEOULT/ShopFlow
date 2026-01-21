@@ -27,9 +27,9 @@ function CategoriesManager() {
     setSaving(true);
     try {
       if (mode === 'edit' && editingId) {
-        await update(editingId, { name: name.trim() });
+        await update(editingId, { name: name });
       } else {
-        await create({ name: name.trim() });
+        await create({ name: name });
       }
       resetForm();
     } finally {
